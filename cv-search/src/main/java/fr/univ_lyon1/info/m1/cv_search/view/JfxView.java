@@ -56,7 +56,7 @@ public class JfxView {
         HBox newSkillBox = new HBox();
         Label labelSkill = new Label("Skill:");
         TextField textField = new TextField();
-        Button submitButton = new Button("Submit");
+        Button submitButton = new Button("Add skill");
         newSkillBox.getChildren().addAll(labelSkill, textField, submitButton);
         newSkillBox.setSpacing(10);
 

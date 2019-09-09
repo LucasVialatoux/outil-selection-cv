@@ -3,7 +3,7 @@
 ## Dates importantes
 
 * Emploi du temps : [See
-  ADE, resource "M1 Informatique"](http://adelb.univ-lyon1.fr/direct/index.jsp?projectId=4&days=0,1,2,3,4&resources=33140&weeks=4,5).
+  ADE](adelb.univ-lyon1.fr/direct/index.jsp?projectId=4&days=0,1,2,3,4&resources=33140&weeks=4,5).
   Attention: les groupes ne sont pas correctement entrés dans ADE.
   Utilisez la resource "M1 informatique" pour voir l'emploi du temps
   (pas grA, grB, ...).

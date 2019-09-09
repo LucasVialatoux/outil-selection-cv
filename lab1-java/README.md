@@ -8,7 +8,7 @@ Il vous est demandé de mettre en place quelques classes pour vous
 remettre en tête les grands principes de la programmation orientée
 objet : messages et collaboration entre objets, attributs et méthodes,
 constructeurs, héritage, etc. Pour cela, vous manipulerez un outil de
-selection de CV pour trier des candidatures à une offre d'emploi.
+sélection de CV pour trier des candidatures à une offre d'emploi.
 
 Votre travail servira de base aux TPs suivants qui feront l'objet d'une
 note globale.
@@ -20,18 +20,20 @@ Environnement
 
 Pour développer en Java durant le TP, vous pouvez choisir d'utiliser :
 
--   Un environnement de développement intégré (comme Eclipse ou
-    Netbeans) qui permet de compiler, de générer un projet, de débugger
-    et d'exécuter
+-   Un environnement de développement intégré (comme Eclipse, 
+    Netbeans ou IntelliJ IDEA) qui permet de compiler, de générer un
+    projet, de débugger et d'exécuter.
 -   N'importe quel éditeur de texte avec coloration syntaxique, et
     effectuer la compilation et l'exécution en ligne de commande.
 
-TODO: vérifier les instructions au Nautibus.
+Vous pouvez travailler au choix sous Linux ou sous Windows.
 
-Vous pouvez travailler au choix sous Linux ou sous Windows. Sur les
-machines du Nautibus, les TPs ont été testés sous Linux, en utilisant
-l'environnement Java installé pour vous dans `/home/tpetu/m1if01/`.
-Avant de démarrer le TP, ajoutez ceci dans votre fichier `~/.bashrc`:
+## Sur les machines du Nautibus sous Linux
+
+Sur les machines du Nautibus, les TPs ont été testés sous Linux, en
+utilisant l'environnement Java installé pour vous dans
+`/home/tpetu/m1if01/`.  Avant de démarrer le TP, ajoutez ceci dans
+votre fichier `~/.bashrc`:
 
     PATH=/home/tpetu/m1if01/bin:"$PATH"
 
@@ -45,10 +47,20 @@ obtenez bien :
     $ which mvn
 	/home/tpetu/m1if01/bin/mvn
 
+## Sur les machines du Nautibus sous Windows
+
+Sous Windows, seul Java 8 est installé mais le projet semble marcher
+avec cette version. L'outil `mvn` en ligne de commande n'est pas
+installé mais vous pourrez faire la majorité des opérations au moins
+avec un IDE (Eclipse+m2e et Netbeans sont installés).
+
+## Sur vos machines personnelles
+
 Sur vos machines personnelles, en cas de problème sous Linux, il peut
 être nécessaire d'installer JavaFX explicitement (`sudo apt install
 openjfx` sous Ubuntu 18.04, ou bien téléchargement depuis
-[openjfx.io](https://openjfx.io)).
+[openjfx.io](https://openjfx.io)). Le TP a été testé avec Java 11, il
+ne marchera probablement pas sans adaptation avec d'autres versions.
 
 Si vous avez installé JavaFX via votre distribution et que Java ne
 trouve pas les classes JavaFX, ajoutez explicitement les fichiers JAR
@@ -113,7 +125,7 @@ n'est pas le cas, vous avez raté quelque chose, recommencez la
 manipulation.
 
 Pour vos projets futurs, vous pourrez aussi créer des projets à partir
-de zero. Pour cela, vous pourrez faire simplement « new project »
+de zéro. Pour cela, vous pourrez faire simplement « new project »
 (bouton **+** en haut de l'écran).
 
 Récupérez une copie locale du code avec la commande (l'URL est à
@@ -166,7 +178,7 @@ Le squelette contient ces classes :
 Le squelette de code fait une première séparation entre l'interface
 graphique (package `view`) et la logique métier (package `model`).
 Nous verrons plus tard que cette séparation est encore plus
-qu'imparfaite et vous demanderons de refactorer le code plus tard.
+qu'imparfaite et vous demanderons de refactorer le code.
 
 ### Exemple d'utilisation
 
@@ -174,14 +186,14 @@ Lancez l'interface graphique, et ouvrez les deux fichiers
 `applicant*.yaml`. Mettons-nous dans la peau d'un recruteur qui
 cherche un candidat ayant des compétences en C et en C++.
 
-Entrez la chaîne `C` dans le champ texte, puis soumettez. La
-compétence `C` est ajoutée à la liste des compétences recherchée.
-Faites de même avec `C++`.
+Entrez la chaîne `c` dans le champ texte, puis soumettez. La
+compétence `c` est ajoutée à la liste des compétences recherchée.
+Faites de même avec `c++`.
 
 Cliquez maintenant sur « search » : la liste des candidats trouvée par
 le système est affichée en bas de la fenêtre :
 
-![Recherche de compétences C et C++](img/search-c-cpp.png)
+![Recherche de compétences c et c++](img/search-c-cpp.png)
 
 Par défaut, le système sélectionne tous les candidats ayant un niveau
 de compétence supérieur à 50 pour toutes les compétences recherchées.
@@ -202,8 +214,8 @@ niveau en C est évalué à 90/100, en C++ 70/100 et en Java 50/100 ».
 Par contre, le second CV n'est pas sélectionné, car `applicant2.yaml`
 montre un niveau de compétences en C de 40, donc <50.
 
-Cliquez maintenant sur `C` dans la liste des compétences requises.
-L'entrée `C` disparaît de la liste. Relancez la recherche : `Foo Bar`
+Cliquez maintenant sur `c` dans la liste des compétences requises.
+L'entrée `c` disparaît de la liste. Relancez la recherche : `Foo Bar`
 doit maintenant apparaître.
 
 ### Documentation
@@ -213,7 +225,7 @@ Consultez la documentation de [Java
 [JavaFX Graphics](https://openjfx.io/javadoc/11/)
 (la bibliothèque graphique utilisée).
 
-### Chargement du projet dans Eclipse ou Netbeans
+### Chargement du projet dans Eclipse, IntelliJ ou Netbeans
 
 Si vous souhaitez utiliser un IDE, votre IDE favori propose
 probablement une prise en charge de Maven, et configurera donc le
@@ -224,13 +236,13 @@ projet automatiquement depuis le `pom.xml` :
   → Maven → Existing Maven Projects). Au nautibus, Eclipse est
   installé dans `/home/tpetu/m1if01/bin/eclipse` avec m2e installé.
 
-* Netbeans : le support de Maven est inclu de base dans l'outil. Il
+* IntelliJ et Netbeans : le support de Maven est inclus de base dans l'outil. Il
   suffit d'ouvrir le répertoire contenant le `pom.xml`.
 
 ### Problèmes et solutions fréquents avec Eclipse
 
 Il est possible qu'Eclipse signale une erreur ou un warning de
-restriction d'access lors de l'utilisation de javafx. Ce problème peut
+restriction d'accès lors de l'utilisation de javafx. Ce problème peut
 être résolu en [modifiant les propriétés du projet pour autoriser
 javafx](http://stackoverflow.com/questions/22812488/using-javafx-in-jre-8).
 En résumé : clic droit sur le projet dans le project / package
@@ -253,18 +265,18 @@ Dans un premier temps, conservez l'architecture (répartition en
 classes et packages) fournie. Nous verrons bientôt comment réorganiser
 le tout.
 
-### Stratégie de selection
+### Stratégie de sélection
 
-Pour l'instant, nous selectionnons les candidats ayant toutes les
+Pour l'instant, nous sélectionnons les candidats ayant toutes les
 compétences requises avec un niveau supérieur à 50. Ce n'est pas
-toujours une bonne stratégie (et parfois ça ne renvoit aucun
+toujours une bonne stratégie (et parfois ça ne renvoie aucun
 résultat).
 
 Modifiez la classe `JfxView` pour ajouter un choix de stratégie de
 sélection du candidat. Ajoutez une stratégie « tout >= 60% », qui
 fonctionne sur le même principe que la stratégie par défaut, en étant
-plus exigent et en ne sélectionnant que les candidants ayant un
-niveau >60 dans toutes les compétences. Ajoutez également une statégie
+plus exigent et en ne sélectionnant que les candidats ayant un
+niveau >60 dans toutes les compétences. Ajoutez également une stratégie
 « moyenne >= 50% » sélectionnant les candidats ayant un niveau de
 compétence moyen sur les compétences requises >50. L'interface peut
 ressembler à ceci:
@@ -279,7 +291,7 @@ Testez.
 
 ### Tri des candidats
 
-Ajoutez une fonctionalité permettant de trier les candidats selon la
+Ajoutez une fonctionnalité permettant de trier les candidats selon la
 moyenne des compétences recherchées, le premier étant le candidat
 ayant la meilleure moyenne.
 
@@ -289,12 +301,12 @@ Réfléchissez maintenant à l'architecture du code. Posez-vous les
 questions suivantes :
 
 * Est-ce facile de modifier l'interface graphique sans changer la
-  fonctionalité ?
+  fonctionnalité ?
   
-* A l'inverse, des modifications sur l'algorithme de sélection des
-  candidats devraient être indépendante, ou presque, de l'interface
+* &Agrave; l'inverse, des modifications sur l'algorithme de sélection des
+  candidats devraient être indépendantes, ou presque, de l'interface
   graphique utilisée. Par exemple, quand vous avez ajouté la stratégie
-  « moyenne >= 50% », vous avez bien sûr du ajouter une entrée au
+  « moyenne >= 50% », vous avez bien sûr dû ajouter une entrée au
   `ComboBox` permettant de choisir la stratégie, mais avez-vous réussi
   à faire le reste du travail sans toucher à JavaFX ?
   
@@ -314,4 +326,4 @@ les lisez pas avant d'y avoir réfléchi vous-mêmes.
 Si vous avez fini ...
 ---------------------
 
-Passez au [../lab2-tools](lab2) !
+Passez au [lab2](../lab2-tools) !

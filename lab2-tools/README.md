@@ -4,7 +4,7 @@ Mif01 - TP Maven-Git-Forge
 Objectif
 --------
 
-Mettre en place et maitriser les outils de gestion de code utilisés tout
+Mettre en place et maîtriser les outils de gestion de code utilisés tout
 au long de l’année.
 
 -   Outil de build avec Maven (mvn)
@@ -34,7 +34,7 @@ avec plugin m2e et IntelliJ sont installés sous Windows à Lyon 1).
 
 Vous devriez déjà avoir fait un fork de votre projet sur la forge, et
 un `git clone` pour en récupérer une copie locale. Si ce n'est pas le
-cas, reprennez les instructions du [lab1-java](../lab1-java).
+cas, reprenez les instructions du [lab1-java](../lab1-java).
 
 Vous pouvez passer directement à la section suivante si vous avez déjà
 configuré Git sur votre machine.
@@ -138,7 +138,7 @@ git status
 ```
 
 n’affiche à présent plus les fichiers dans target, mais affiche le
-fichier `.gitignore`. Ajoutez ce fichier dans les fichiers versionnés:
+fichier `.gitignore`. Ajoutez ce fichier dans les fichiers versionnés :
 
 ```
 git add .gitignore
@@ -245,16 +245,22 @@ générer un jar exécutable incluant les bibliothèques utilisées (voir
 Tester en lancer java via (adaptez l'argument de `--module-path` à
 votre installation si besoin) :
 
+Sous Linux au Nautibus :
+
+```
+java --module-path /home/tpetu/m1if01/javafx-sdk-11.0.2/lib --add-modules=javafx.controls -jar target/cv_search-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+```
+
+Sous Ubuntu avec le package `openjfx` installé :
+
 ```
 java --module-path /usr/share/openjfx/lib --add-modules=javafx.controls -jar target/cv_search-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-TODO: vérifier au Nautibus.
-
 ## Gérer les conflits
 
 Nous n’allons pas mettre en pratique la gestion de conflits dans ce TP,
-mais c’est quelque chose qui arrive fréquement. La [documentation de Git
+mais c’est quelque chose qui arrive fréquemment. La [documentation de Git
 traite du
 sujet](https://git-scm.com/book/fr/v2/Les-branches-avec-Git-Branches-et-fusions%C2%A0%3A-les-bases)),
 et [Github a un guide expliquant plutôt bien les
@@ -280,7 +286,7 @@ crée lors du pull dans la branche courante.
 `git status` signale les fichiers en conflits. Editer ces fichiers
 pour intégrer de manière cohérente les modifications effectuées dans
 le deux branches. Une fois les modifications effectuées, si la
-construction `mvn install` fonctionne, indiquer ques les conflits sont
+construction `mvn install` fonctionne, indiquer que les conflits sont
 résolus via
 
 ```
@@ -327,14 +333,14 @@ tests:
 Avec cette configuration, le moteur d'intégration continue va lancer
 le script `my-test-script.sh` dans un conteneur docker (sorte de
 machine virtuelle) sur lequel est installé Ubuntu. Si
-`my-test-script.sh` a un status de retour non-nul (par exemple s'il
+`my-test-script.sh` a un statut de retour non-nul (par exemple s'il
 termine par `exit 1`), on considère que les tests échouent.
 
 ### Mise en place
 
 Pour notre projet, nous vous fournissons un `.gitlab-ci.yml` qui fait
 un peu plus que cela. Ouvrez le fichier
-[../gitlab-ci.yml](../gitlab-ci.yml). Ce fichier permet de :
+[../.gitlab-ci.yml](../.gitlab-ci.yml). Ce fichier permet de :
 
 * Utiliser une image docker sur laquelle Maven et JavaFX sont
   disponibles. Cette image configure également un proxy HTTP qui est
@@ -371,7 +377,7 @@ choisissez dans la barre latérale : « Settings → Integrations », puis
 « Pipelines emails ».
 
 Vous pouvez examiner la sortie de la commande `mvn test` lancée par
-GitLab en choisissans dans la barre latérale : « CI / CD → Jobs » puis
+GitLab en choisissant dans la barre latérale : « CI / CD → Jobs » puis
 en choisissant le dernier commit passé (le premier dans la liste). Si
 vous avez correctement réalisé l'étape précédente vous devriez voir la
 sortie de Maven.
@@ -393,7 +399,7 @@ Il y a deux choses à corriger :
 
 * Dans `ApplicantList.java`, une erreur de style attrapée par le [plugin
   maven](https://maven.apache.org/plugins/maven-checkstyle-plugin/) de
-  l'outil [checkstyle](http://checkstyle.sourceforge.net/). Un TODO
+  l'outil [checkstyle](http://checkstyle.sourceforge.net/). Un `TODO`
   devrait vous indiquer ce qu'il faut faire.
   
 Une fois ces deux corrections faites, vérifiez que `mvn test` ne lève
@@ -406,8 +412,9 @@ Si ce n'est pas déjà fait, parcourez le fichier `pom.xml`. C'est
 verbeux (XML), mais il n'y a rien de sorcier. En pratique, on édite
 rarement ce fichier entièrement à la main : soit on utilise un outil
 automatique, soit on copie-colle et on adapte des portions de code
-fournies sur le site des outils utilisés. Pour le cas qui nous
-intéresse, les portions importantes sont :
+fournies sur le site des outils utilisés (https://search.maven.org/
+est un bon point de départ pour chercher les dépendances disponibles).
+Pour le cas qui nous intéresse, les portions importantes sont :
 
 Le plugin `exec-maven-plugin` pour lancer l'application :
 
@@ -488,10 +495,10 @@ erreurs. On demande à exécuter pendant `mvn test` (via
 `<phase>test</phase>`) la cible `check` (`<goal>check</goal>`) du
 plugin.
   
-## Et les merge-requests (alias pull-requests) ?
+## Et les merge-requests (alias pull-requests sur GitHub) ?
 
-Les merge-requests sont un mécanisme très pratique pour organiser la
-revue de code. Le principe :
+Les merge-requests sont un mécanisme **très pratique** et **très
+efficace** pour organiser la revue de code. Le principe :
 
 * Le contributeur commite chaque nouvelle fonctionalité dans une
   branche (autre que master), et envoie (`push`) cette branche sur la
@@ -514,6 +521,12 @@ revue de code. Le principe :
 
 Le bénéfice n'est pas forcément évident sur un petit TP ou projet
 scolaire, mais si le temps le permet et que vous êtes déjà à l'aise
-avec les bases, nous vous encourrageons à expérimenter et pourquoi pas
-à lire la [documentation de GitLab sur les
+avec les bases, nous vous encourageons **très vivement** à
+expérimenter et pourquoi pas à lire la [documentation de GitLab sur
+les
 merge-requests](https://docs.gitlab.com/ce/user/project/merge_requests/).
+
+## Et maintenant ?
+
+L'essentiel du travail de votre mini-projet se trouve dans le
+[lab3](../lab3-patterns), ne perdez pas de temps !
