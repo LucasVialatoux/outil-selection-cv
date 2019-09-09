@@ -2,8 +2,8 @@
 
 ## Dates importantes
 
-* Emploi du temps : [See
-  ADE](adelb.univ-lyon1.fr/direct/index.jsp?projectId=4&days=0,1,2,3,4&resources=33140&weeks=4,5).
+* Emploi du temps : [Cf.
+  ADE](http://adelb.univ-lyon1.fr/direct/index.jsp?projectId=4&days=0,1,2,3,4&resources=33140&weeks=4,5).
   Attention: les groupes ne sont pas correctement entrés dans ADE.
   Utilisez la resource "M1 informatique" pour voir l'emploi du temps
   (pas grA, grB, ...).
@@ -42,9 +42,18 @@ email, ce fichier en contient une copie.
 <!-- * [02-cm-maven-forge-ic-slides.pdf](02-cm-maven-forge-ic-slides.pdf) -->
 <!--   (printable version: [02-cm-maven-forge-ic-handout.pdf](02-cm-maven-forge-ic-handout.pdf)) -->
 
-<!-- ## Lab 2:  -->
+## Lab 2:
 
-<!-- * [lab2-tools/README.md](lab2-tools/README.md) -->
+* [lab2-tools/README.md](lab2-tools/README.md)
+
+## Lab 3 & 4: design patterns & refactoring
+
+* [lab3-patterns/README.md](lab3-patterns/README.md) and some help
+  with [MVC](lab3-patterns/mvc.md)
+
+## Lab 5: tests
+
+* [lab5-tests/README.md](lab5-tests/README.md)
 
 <!-- ## Course 3: Coding style and use-cases -->
 
@@ -69,11 +78,6 @@ email, ce fichier en contient une copie.
 
 <!-- * Slides : [CM-patterns.pdf](https://perso.liris.cnrs.fr/lionel.medini/enseignement/M1IF01/CM-patterns.pdf) -->
 
-<!-- ## Lab 3 & 4: design patterns & refactoring -->
-
-<!-- * [lab3-patterns/README.md](lab3-patterns/README.md) and some help -->
-<!--   with [MVC](lab3-patterns/mvc.md) -->
-
 <!-- ## Course 6: Testing -->
 
 <!-- * Sandrine Gouraud's slides: -->
@@ -82,10 +86,6 @@ email, ce fichier en contient une copie.
 <!-- * [Software Fail Watch, 5th -->
 <!--   edition](https://www.tricentis.com/wp-content/uploads/2018/01/20180119_Software-Fails-Watch_Small_Web.pdf) -->
 <!--   presented during the course. -->
-
-<!-- ## Lab 5: tests -->
-
-<!-- * [lab5-tests/README.md](lab5-tests/README.md) -->
 
 <!-- ## Course 7: Industrializing an Open Source Project -->
 
