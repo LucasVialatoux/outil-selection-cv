@@ -39,7 +39,7 @@ public class JfxView {
         root.getChildren().add(newSkillBox);
         
         ObservableList<String> options = 
-        FXCollections.observableArrayList(
+            FXCollections.observableArrayList(
                 "Normal Search",
                 "Search All >= 60%",
                 "Search Average >= 50%"
@@ -111,19 +111,21 @@ public class JfxView {
         return resultBox;
     }
     
-    public class Tuple implements Comparable{
+    public class Tuple implements Comparable {
+        
         public String name;
         public int moyenne;
-        Tuple(String name,int moyenne){
-            this.moyenne=moyenne;
-            this.name=name;
+        
+        Tuple(String name,int moyenne) {
+            this.moyenne = moyenne;
+            this.name = name;
         }
 
         @Override
         public int compareTo(Object o) {
-           int comparemoyenne=((Tuple)o).moyenne;
+            int comparemoyenne = ((Tuple)o).moyenne;
             /* For Ascending order*/
-            return comparemoyenne-this.moyenne;
+            return comparemoyenne - this.moyenne;
         }
     }
     
@@ -141,34 +143,37 @@ public class JfxView {
                 ApplicantList listApplicants
                     = new ApplicantListBuilder(new File(".")).build();
                 resultBox.getChildren().clear();
-                String searchType= comboBox.getValue().toString();
+                String searchType = comboBox.getValue().toString();
                 ArrayList<Tuple> listOfTuple = new ArrayList();
                 
                 for (Applicant a : listApplicants) {
                     boolean selected = true;
-                    int total=0;
-                    int compteur=0;
-                    int moyenne=0;
+                    int total = 0;
+                    int compteur = 0;
+                    int moyenne = 0;
                     for (Node skill : searchSkillsBox.getChildren()) {
                         String skillName = ((Button) skill).getText();
                         //Cas recherche normale
-                        if (a.getSkill(skillName) < 50 && searchType=="Normal Search") {
+                        if (a.getSkill(skillName) < 50 
+                                && searchType == "Normal Search") {
                             selected = false;
                             break;
-                        //Cas recherche >=60%
-                        } else if(a.getSkill(skillName) <=60 && searchType=="Search All >= 60%"){
+                            //Cas recherche >=60%
+                        } else if (a.getSkill(skillName) <= 60 
+                                && searchType == "Search All >= 60%") {
                             selected = false;
                             break;
                         } 
                         //Calcul moyenne
                         total = total + a.getSkill(skillName);
                         compteur++;
-                        moyenne = total/compteur;
+                        moyenne = total / compteur;
                     }
                     //Cas recherche moyenne >=50%
-                    if (moyenne <= 50 && searchType=="Search Average >= 50%"){
+                    if (moyenne <= 50 
+                            && searchType == "Search Average >= 50%") {
                         selected = false;
-                     }
+                    }
                     if (selected) {
                         Tuple t = new Tuple(a.getName(),moyenne);
                         listOfTuple.add(t);
@@ -177,8 +182,8 @@ public class JfxView {
                 }
                 //Tri des candidats
                 Collections.sort(listOfTuple);
-                for (Tuple tpl: listOfTuple){
-                   resultBox.getChildren().add(new Label(tpl.name));
+                for (Tuple tpl : listOfTuple) {
+                    resultBox.getChildren().add(new Label(tpl.name));
                 }
             }
         });
