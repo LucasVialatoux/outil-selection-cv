@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package fr.univ_lyon1.info.m1.cv_search.model;
 
-/**
- *
- * @author lucas
- */
 public class Tuple implements Comparable {    
     public String name;
     public double moyenne;

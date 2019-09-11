@@ -1,14 +1,9 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.SearchWidget;
-import java.io.File;
 
-import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
-import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
-import fr.univ_lyon1.info.m1.cv_search.model.ApplicantListBuilder;
 import fr.univ_lyon1.info.m1.cv_search.model.Tuple;
 import java.util.ArrayList;
-import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -126,7 +121,8 @@ public class JfxView {
             public void handle(ActionEvent event) {
                 resultBox.getChildren().clear();
                 String searchType  = comboBox.getValue().toString();
-                ArrayList<Tuple> listOfTuple = SearchWidget.searchWidget(searchType,searchSkillsBox);
+                ArrayList<Tuple> listOfTuple = 
+                        SearchWidget.searchWidget(searchType,searchSkillsBox);
                 for (Tuple tpl : listOfTuple) {
                     resultBox.getChildren().add(new Label(tpl.name));
                 }
