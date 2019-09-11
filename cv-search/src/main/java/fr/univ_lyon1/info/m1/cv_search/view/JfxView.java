@@ -1,10 +1,12 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
 
+import fr.univ_lyon1.info.m1.cv_search.controller.SearchWidget;
 import java.io.File;
 
 import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantListBuilder;
+import fr.univ_lyon1.info.m1.cv_search.model.Tuple;
 import java.util.ArrayList;
 import java.util.Collections;
 import javafx.collections.FXCollections;
@@ -111,23 +113,7 @@ public class JfxView {
         return resultBox;
     }
     
-    public class Tuple implements Comparable {
-        
-        public String name;
-        public int moyenne;
-        
-        Tuple(String name,int moyenne) {
-            this.moyenne = moyenne;
-            this.name = name;
-        }
-
-        @Override
-        public int compareTo(Object o) {
-            int comparemoyenne = ((Tuple)o).moyenne;
-            /* For Ascending order*/
-            return comparemoyenne - this.moyenne;
-        }
-    }
+    
     
     
     /**
@@ -135,58 +121,17 @@ public class JfxView {
      */
     private Node createSearchWidget() {
         Button search = new Button("Search");
-        
         search.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // TODO
-                ApplicantList listApplicants
-                    = new ApplicantListBuilder(new File(".")).build();
                 resultBox.getChildren().clear();
-                String searchType = comboBox.getValue().toString();
-                ArrayList<Tuple> listOfTuple = new ArrayList();
-                
-                for (Applicant a : listApplicants) {
-                    boolean selected = true;
-                    int total = 0;
-                    int compteur = 0;
-                    int moyenne = 0;
-                    for (Node skill : searchSkillsBox.getChildren()) {
-                        String skillName = ((Button) skill).getText();
-                        //Cas recherche normale
-                        if (a.getSkill(skillName) < 50 
-                                && searchType == "Normal Search") {
-                            selected = false;
-                            break;
-                            //Cas recherche >=60%
-                        } else if (a.getSkill(skillName) <= 60 
-                                && searchType == "Search All >= 60%") {
-                            selected = false;
-                            break;
-                        } 
-                        //Calcul moyenne
-                        total = total + a.getSkill(skillName);
-                        compteur++;
-                        moyenne = total / compteur;
-                    }
-                    //Cas recherche moyenne >=50%
-                    if (moyenne <= 50 
-                            && searchType == "Search Average >= 50%") {
-                        selected = false;
-                    }
-                    if (selected) {
-                        Tuple t = new Tuple(a.getName(),moyenne);
-                        listOfTuple.add(t);
-                    }
-                    
-                }
-                //Tri des candidats
-                Collections.sort(listOfTuple);
+                String searchType  = comboBox.getValue().toString();
+                ArrayList<Tuple> listOfTuple = SearchWidget.searchWidget(searchType,searchSkillsBox);
                 for (Tuple tpl : listOfTuple) {
                     resultBox.getChildren().add(new Label(tpl.name));
                 }
             }
-        });
+            });
         return search;
     }
     
