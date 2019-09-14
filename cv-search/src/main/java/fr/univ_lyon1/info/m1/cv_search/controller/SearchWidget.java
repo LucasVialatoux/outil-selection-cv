@@ -10,6 +10,10 @@ import fr.univ_lyon1.info.m1.cv_search.model.Tuple;
 import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
 import fr.univ_lyon1.info.m1.cv_search.model.ApplicantListBuilder;
+import fr.univ_lyon1.info.m1.cv_search.model.NormalSearch;
+import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
+import fr.univ_lyon1.info.m1.cv_search.model.SuperieurSearch;
+import fr.univ_lyon1.info.m1.cv_search.model.MoyenneSearch;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +26,7 @@ public class SearchWidget {
     /**
      * Create the widget used to trigger the search.
      */
-    public static ArrayList<Tuple> searchWidget(String searchType,
+    public static ArrayList<Tuple> searchWidget(Strategy searchType,
             HBox searchSkillsBox) {
         ApplicantList listApplicants
             = new ApplicantListBuilder(new File(".")).build();
@@ -34,14 +38,17 @@ public class SearchWidget {
             double moyenne = 0;
             for (Node skill : searchSkillsBox.getChildren()) {
                 String skillName = ((Button) skill).getText();
-                selected = selectedApplicant(searchType,a.getSkill(skillName));
-                //Calcul moyenne
+                if (searchType instanceof NormalSearch) {
+                    selected = searchType.calcul(a.getSkill(skillName));
+                } else if (searchType instanceof SuperieurSearch) {
+                    selected = searchType.calcul(a.getSkill(skillName));
+                }
                 total = total + a.getSkill(skillName);
                 compteur++;
                 moyenne = total / compteur;
             }
             //Cas recherche moyenne >=50%
-            selected = selectedApplicant(searchType,(int)moyenne);
+            selected = searchType.calcul((int)moyenne);
             
             if (selected) {
                 Tuple t = new Tuple(a.getName(),moyenne);
@@ -52,21 +59,5 @@ public class SearchWidget {
         //Tri des candidats
         Collections.sort(listOfTuple);
         return listOfTuple;
-    }
-    
-    /** retourne faux si le candidat ne doit pas être sélectionné.*/
-    public static boolean selectedApplicant(String type,int skill) {
-        //Cas recherche >50%
-        if (skill < 50 && type == "Normal Search") {
-            return false;
-            //Cas recherche >=60%
-        } else if (skill <= 60 && type == "Search All >= 60%") {
-            return false;
-            //Cas recherche moyenne >=50%
-        } else if (skill <= 50 && type == "Search Average >= 50%") {
-            return false;
-        } else {
-            return true;
-        }
     }
 }

@@ -1,6 +1,11 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.SearchWidget;
+import fr.univ_lyon1.info.m1.cv_search.model.MoyenneSearch;
+import fr.univ_lyon1.info.m1.cv_search.model.NormalSearch;
+import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
+import fr.univ_lyon1.info.m1.cv_search.model.StrategyConverter;
+import fr.univ_lyon1.info.m1.cv_search.model.SuperieurSearch;
 
 import fr.univ_lyon1.info.m1.cv_search.model.Tuple;
 import java.util.ArrayList;
@@ -34,27 +39,28 @@ public class JfxView {
 
         Node newSkillBox = createNewSkillWidget();
         root.getChildren().add(newSkillBox);
-        
-        ObservableList<String> options = 
+        NormalSearch noSearch = new NormalSearch();
+        SuperieurSearch suSearch = new SuperieurSearch();
+        MoyenneSearch moSearch = new MoyenneSearch();
+        ObservableList<Strategy> options = 
             FXCollections.observableArrayList(
-                "Normal Search",
-                "Search All >= 60%",
-                "Search Average >= 50%"
+                noSearch,
+                suSearch,
+                moSearch
             );
         comboBox = new ComboBox(options);
         root.getChildren().add(comboBox);
-        comboBox.setValue("Normal Search");
+        comboBox.setValue(noSearch);
+        comboBox.setConverter(new StrategyConverter());
         
         Node searchSkillsBox = createCurrentSearchSkillsWidget();
         root.getChildren().add(searchSkillsBox);
         
-
         Node search = createSearchWidget();
         root.getChildren().add(search);
 
         Node resultBox = createResultsWidget();
         root.getChildren().add(resultBox);
-        
         
         // Everything's ready: add it to the scene and display it
         Scene scene = new Scene(root, width, height);
@@ -81,7 +87,6 @@ public class JfxView {
                 if (text.equals("")) {
                     return; // Do nothing
                 }
-
                 Button skillBtn = new Button(text);
                 searchSkillsBox.getChildren().add(skillBtn);
                 skillBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -90,7 +95,6 @@ public class JfxView {
                         searchSkillsBox.getChildren().remove(skillBtn);
                     }
                 });
-
                 textField.setText("");
                 textField.requestFocus();
             }
@@ -120,7 +124,7 @@ public class JfxView {
             @Override
             public void handle(ActionEvent event) {
                 resultBox.getChildren().clear();
-                String searchType  = comboBox.getValue().toString();
+                Strategy searchType  = (Strategy)comboBox.getValue();
                 ArrayList<Tuple> listOfTuple = 
                         SearchWidget.searchWidget(searchType,searchSkillsBox);
                 for (Tuple tpl : listOfTuple) {
