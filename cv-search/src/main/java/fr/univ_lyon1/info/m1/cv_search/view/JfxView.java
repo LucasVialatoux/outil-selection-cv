@@ -1,6 +1,6 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
 
-import fr.univ_lyon1.info.m1.cv_search.controller.SearchWidget;
+import fr.univ_lyon1.info.m1.cv_search.controller.WidgetController;
 import fr.univ_lyon1.info.m1.cv_search.model.MoyenneSearch;
 import fr.univ_lyon1.info.m1.cv_search.model.NormalSearch;
 import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
@@ -9,6 +9,8 @@ import fr.univ_lyon1.info.m1.cv_search.model.SuperieurSearch;
 
 import fr.univ_lyon1.info.m1.cv_search.model.Tuple;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,18 +25,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class JfxView {
+public class JfxView implements Observer {
     private HBox searchSkillsBox;
     private VBox resultBox;
     private ComboBox comboBox;
+    private WidgetController c;
 
     /**
      * Create the main view of the application.
      */
-    public JfxView(Stage stage, int width, int height) {
+    public JfxView(WidgetController c,Stage stage, int width, int height) {
         // Name of window
         stage.setTitle("Search for CV");
-
+        this.c = c;
         VBox root = new VBox();
 
         Node newSkillBox = createNewSkillWidget();
@@ -125,11 +128,7 @@ public class JfxView {
             public void handle(ActionEvent event) {
                 resultBox.getChildren().clear();
                 Strategy searchType  = (Strategy)comboBox.getValue();
-                ArrayList<Tuple> listOfTuple = 
-                        SearchWidget.searchWidget(searchType,searchSkillsBox);
-                for (Tuple tpl : listOfTuple) {
-                    resultBox.getChildren().add(new Label(tpl.name));
-                }
+                c.search(searchType,searchSkillsBox);
             }
             });
         return search;
@@ -142,5 +141,13 @@ public class JfxView {
     private Node createCurrentSearchSkillsWidget() {
         searchSkillsBox = new HBox();
         return searchSkillsBox;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        ArrayList<Tuple> listOfTuple = (ArrayList<Tuple>)arg;
+        for (Tuple tpl : listOfTuple) {
+            resultBox.getChildren().add(new Label(tpl.name));
+        }
     }
 }
