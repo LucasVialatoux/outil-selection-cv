@@ -14,7 +14,14 @@ public class Tuple implements Comparable {
         this.moyenne = moyenne;
         this.name = name;
     }
-
+    /*public boolean equals(Tuple t){
+        if (name == t.name && moyenne == t.moyenne){
+            return true;
+        }else{
+            return false;
+        }
+    }*/
+    
     @Override
     public int compareTo(Object o) {
         int comparemoyenne = (int)((Tuple)o).moyenne;

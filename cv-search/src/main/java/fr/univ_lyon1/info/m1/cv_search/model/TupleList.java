@@ -29,7 +29,7 @@ public class TupleList extends Observable {
     /** update the result after search. */
     public void searchWidget(Strategy searchType,HBox searchSkillsBox) {
         ApplicantList listA = new ApplicantListBuilder(new File(".")).build();
-        list.clear();
+        ArrayList<Tuple> listT = new ArrayList<Tuple>();
         for (Applicant a : listA) {
             boolean selected = true;
             int total = 0;
@@ -45,20 +45,48 @@ public class TupleList extends Observable {
                 moyenne = total / compteur;
             }
             //Cas recherche moyenne >=50%
-            if (moyenne != 0) {
+            if (searchType instanceof MoyenneSearch) {
                 selected = searchType.calcul((int)moyenne);
             }
             
             if (selected) {
                 Tuple t = new Tuple(a.getName(),moyenne);
-                list.add(t);
+                listT.add(t);
             }
 
         }
         //Tri des candidats
-        Collections.sort(list);
-        setChanged();
-        notifyObservers(list);
+        Collections.sort(listT);
+        if (!this.identicList(listT)) {
+            list = listT;
+            setChanged();
+            notifyObservers(list);
+        }
+    }
+    
+    /** return true if the list contains the same tuple. */
+    public boolean identicList(ArrayList<Tuple> b) {
+        if (list == null && b == null) {
+            return true;
+        }
+            
+        if ((list == null && b != null) || (list != null && b == null)) {
+            return false;
+        }
+
+        if (list.size() != b.size()) {
+            return false;
+        }
+            
+        for (Tuple t : list) {
+            for (Tuple j : b) {
+                if (t.equals(j)) {
+                    return false;
+                }
+            }  
+        }
+
+        return true;
     }
 
     /** Clear the list of applicants. */

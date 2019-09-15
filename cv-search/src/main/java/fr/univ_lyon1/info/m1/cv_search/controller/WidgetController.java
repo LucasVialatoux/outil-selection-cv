@@ -6,17 +6,29 @@
 
 package fr.univ_lyon1.info.m1.cv_search.controller;
 
+import fr.univ_lyon1.info.m1.cv_search.model.Skill;
 import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
 import fr.univ_lyon1.info.m1.cv_search.model.TupleList;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
 
 public class WidgetController {
     
     public TupleList list;
+    public Skill s;
     
-    public WidgetController(TupleList list) {
+    public WidgetController(TupleList list,Skill s) {
         this.list = list;
+        this.s = s;
+    }
+    
+    public void addButtonSkill(String text) {
+        s.ajoutSkill(text);
+    }
+    
+    public void removeButtonSkill(Button b) {
+        s.removeSkill(b);
     }
     
     public void search(Strategy searchType,HBox searchSkillsBox) {

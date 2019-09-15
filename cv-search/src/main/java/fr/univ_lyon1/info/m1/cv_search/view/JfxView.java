@@ -90,16 +90,9 @@ public class JfxView implements Observer {
                 if (text.equals("")) {
                     return; // Do nothing
                 }
-                Button skillBtn = new Button(text);
-                searchSkillsBox.getChildren().add(skillBtn);
-                skillBtn.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        searchSkillsBox.getChildren().remove(skillBtn);
-                    }
-                });
+                c.addButtonSkill(text);
                 textField.setText("");
-                textField.requestFocus();
+                textField.requestFocus();   
             }
         };
         submitButton.setOnAction(skillHandler);
@@ -126,7 +119,6 @@ public class JfxView implements Observer {
         search.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                resultBox.getChildren().clear();
                 Strategy searchType  = (Strategy)comboBox.getValue();
                 c.search(searchType,searchSkillsBox);
             }
@@ -142,12 +134,46 @@ public class JfxView implements Observer {
         searchSkillsBox = new HBox();
         return searchSkillsBox;
     }
-
+    
+    /**create a button with a skill.*/
+    private void createSkillButton(String text) {
+        Button skillBtn = new Button(text);
+        searchSkillsBox.getChildren().add(skillBtn);
+        skillBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                c.removeButtonSkill(skillBtn);
+            }
+        });
+    }
+    
+    /**remove a skill Button.*/
+    private void removeSkillButton(Button b) {
+        for (Node n : searchSkillsBox.getChildren()) {
+            if (n instanceof Button) {
+                Button but = (Button)n;
+                if (but.getText().equals(b.getText())) {
+                    searchSkillsBox.getChildren().remove(n);
+                    break;
+                }
+            }
+        } 
+    }
+    
+    
     @Override
     public void update(Observable o, Object arg) {
-        ArrayList<Tuple> listOfTuple = (ArrayList<Tuple>)arg;
-        for (Tuple tpl : listOfTuple) {
-            resultBox.getChildren().add(new Label(tpl.name));
+        if (arg instanceof ArrayList) {
+            resultBox.getChildren().clear();
+            ArrayList<Tuple> listOfTuple = (ArrayList<Tuple>)arg;
+            for (Tuple tpl : listOfTuple) {
+                resultBox.getChildren().add(new Label(tpl.name));
+            }
+        } else if (arg instanceof Button) {
+            removeSkillButton((Button)arg);
+        } else {
+            createSkillButton((String)arg);
         }
+        
     }
 }
