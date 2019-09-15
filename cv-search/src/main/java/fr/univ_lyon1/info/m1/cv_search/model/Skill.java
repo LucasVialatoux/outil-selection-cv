@@ -7,7 +7,7 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
 import java.util.Observable;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class Skill extends Observable {
     
@@ -17,8 +17,8 @@ public class Skill extends Observable {
         notifyObservers(text);
     }
     
-    public void removeSkill(Button b) {
+    public void removeSkill(Label l) {
         setChanged();
-        notifyObservers(b);
+        notifyObservers(l);
     }
 }

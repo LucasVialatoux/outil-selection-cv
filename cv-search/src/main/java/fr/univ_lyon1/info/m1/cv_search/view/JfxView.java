@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -137,22 +138,31 @@ public class JfxView implements Observer {
     
     /**create a button with a skill.*/
     private void createSkillButton(String text) {
-        Button skillBtn = new Button(text);
-        searchSkillsBox.getChildren().add(skillBtn);
-        skillBtn.setOnAction(new EventHandler<ActionEvent>() {
+        HBox box = new HBox();
+        Label l = new Label(text + " ");
+        Button b = new Button("x");
+        box.getChildren().add(l);
+        box.getChildren().add(b);
+        box.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
+            + "-fx-border-width: 1;" + "-fx-border-insets: 5;"
+            + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+        box.setAlignment(Pos.CENTER_LEFT);
+        searchSkillsBox.getChildren().add(box);
+        b.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                c.removeButtonSkill(skillBtn);
+                c.removeButtonSkill(l);
             }
         });
     }
     
     /**remove a skill Button.*/
-    private void removeSkillButton(Button b) {
+    private void removeSkillButton(Label l) {
         for (Node n : searchSkillsBox.getChildren()) {
-            if (n instanceof Button) {
-                Button but = (Button)n;
-                if (but.getText().equals(b.getText())) {
+            if (n instanceof HBox) {
+                HBox hb = (HBox)n;
+                Label lab = (Label) hb.getChildren().get(0);
+                if (lab.getText().equals(l.getText())) {
                     searchSkillsBox.getChildren().remove(n);
                     break;
                 }
@@ -169,8 +179,8 @@ public class JfxView implements Observer {
             for (Tuple tpl : listOfTuple) {
                 resultBox.getChildren().add(new Label(tpl.name));
             }
-        } else if (arg instanceof Button) {
-            removeSkillButton((Button)arg);
+        } else if (arg instanceof Label) {
+            removeSkillButton((Label)arg);
         } else {
             createSkillButton((String)arg);
         }
