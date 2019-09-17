@@ -31,31 +31,11 @@ public class TupleList extends Observable {
         ApplicantList listA = new ApplicantListBuilder(new File(".")).build();
         ArrayList<Tuple> listT = new ArrayList<Tuple>();
         for (Applicant a : listA) {
-            boolean selected = true;
-            int total = 0;
-            int compteur = 0;
-            double moyenne = 0;
-            
-            for (Node skill : searchSkillsBox.getChildren()) {
-                HBox hb = (HBox)skill;
-                Label l = (Label)hb.getChildren().get(0);
-                String skillName = l.getText();
-                if (!(searchType instanceof MoyenneSearch)) {
-                    selected = searchType.calcul(a.getSkill(skillName));
-                }
-                total = total + a.getSkill(skillName);
-                compteur++;
-                moyenne = total / compteur;
-            }
-            //Cas recherche moyenne >=50%
-            if (searchType instanceof MoyenneSearch) {
-                selected = searchType.calcul((int)moyenne);
-            }
+            boolean selected = searchType.calcul(a, searchSkillsBox);
             if (selected) {
-                Tuple t = new Tuple(a.getName(),moyenne);
+                Tuple t = new Tuple(a.getName(),searchType.getMoyenne());
                 listT.add(t);
             }
-
         }
         //Tri des candidats
         Collections.sort(listT);

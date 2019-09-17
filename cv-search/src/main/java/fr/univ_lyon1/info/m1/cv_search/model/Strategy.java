@@ -6,11 +6,15 @@
 
 package fr.univ_lyon1.info.m1.cv_search.model;
 
+import javafx.scene.layout.HBox;
+
 /**
 * Interface for calculate strategy.
 */
 public interface Strategy {
-    public boolean calcul(int value);
+    public boolean calcul(Applicant a,HBox searchSkillsBox);
+    
+    public int getMoyenne();
     
     @Override
     public String toString();
