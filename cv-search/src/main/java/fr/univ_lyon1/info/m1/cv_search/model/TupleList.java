@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Observable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 
@@ -35,8 +36,11 @@ public class TupleList extends Observable {
             int total = 0;
             int compteur = 0;
             double moyenne = 0;
+            
             for (Node skill : searchSkillsBox.getChildren()) {
-                String skillName = ((Button) skill).getText();
+                HBox hb = (HBox)skill;
+                Label l = (Label)hb.getChildren().get(0);
+                String skillName = l.getText();
                 if (!(searchType instanceof MoyenneSearch)) {
                     selected = searchType.calcul(a.getSkill(skillName));
                 }
@@ -48,7 +52,6 @@ public class TupleList extends Observable {
             if (searchType instanceof MoyenneSearch) {
                 selected = searchType.calcul((int)moyenne);
             }
-            
             if (selected) {
                 Tuple t = new Tuple(a.getName(),moyenne);
                 listT.add(t);

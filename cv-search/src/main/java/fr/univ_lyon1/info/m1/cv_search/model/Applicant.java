@@ -1,10 +1,12 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Applicant {
     Map<String, Integer> skills = new HashMap<String, Integer>();
+    private ArrayList<String> expSkill = new ArrayList<String>();
     String name;
 
     public int getSkill(String string) {
@@ -21,5 +23,13 @@ public class Applicant {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ArrayList<String> getExpSkill() {
+        return expSkill;
+    }
+
+    public void setExpSkill(ArrayList<String> expSkill) {
+        this.expSkill = expSkill;
     }
 }

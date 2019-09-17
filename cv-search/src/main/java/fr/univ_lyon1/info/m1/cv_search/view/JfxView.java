@@ -139,7 +139,7 @@ public class JfxView implements Observer {
     /**create a button with a skill.*/
     private void createSkillButton(String text) {
         HBox box = new HBox();
-        Label l = new Label(text + " ");
+        Label l = new Label(text);
         Button b = new Button("x");
         box.getChildren().add(l);
         box.getChildren().add(b);
