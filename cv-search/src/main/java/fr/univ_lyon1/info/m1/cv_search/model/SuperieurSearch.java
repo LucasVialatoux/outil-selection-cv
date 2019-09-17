@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 /**
-* Recherche superieur (skill >=60).
+* Superior search (skill >=60).
 */
 public class SuperieurSearch implements Strategy {
     public final String name;

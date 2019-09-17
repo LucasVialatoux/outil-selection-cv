@@ -49,7 +49,7 @@ public class ApplicantBuilder {
         return a;
     }
     
-    /** get all experience skill.*/
+    /** Get all experience skill.*/
     private ArrayList<String> expSkill(Map<String, Object> exp) {
         ArrayList<String> exS = new ArrayList<String>();
         for (String o :exp.keySet()) {

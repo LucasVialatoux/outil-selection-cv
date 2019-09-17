@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 /**
-* Recherche moyenne des skills >50.
+* Skills search with average >50.
 */
 public class MoyenneSearch implements Strategy {
     public final String name;

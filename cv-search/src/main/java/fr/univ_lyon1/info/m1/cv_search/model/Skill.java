@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 
 public class Skill extends Observable {
     
-    /** notify view to add skill button. */
+    /** Notify view to add skill button. */
     public void ajoutSkill(String text) {
         notifyObservers(text);
     }

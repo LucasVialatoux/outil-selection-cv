@@ -13,7 +13,7 @@ public abstract class Observable {
     
     private ArrayList<Observer> obs = new ArrayList();
     
-    /** change all Observer.*/
+    /** Change all Observer.*/
     public void notifyObservers(Object arg) {
         for (Observer ob : obs) {
             ob.update(this, arg);

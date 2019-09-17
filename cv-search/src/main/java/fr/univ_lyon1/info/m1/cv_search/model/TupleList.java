@@ -9,11 +9,7 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-
 
 public class TupleList extends Observable {
     public ArrayList<Tuple> list = new ArrayList<Tuple>();
@@ -37,7 +33,7 @@ public class TupleList extends Observable {
                 listT.add(t);
             }
         }
-        //Tri des candidats
+        //Sort of applicants
         Collections.sort(listT);
         if (!this.identicList(listT)) {
             list = listT;
@@ -45,7 +41,7 @@ public class TupleList extends Observable {
         }
     }
     
-    /** return true if the list contains the same tuple. */
+    /** Return true if the list contains the same tuple. */
     public boolean identicList(ArrayList<Tuple> b) {
         if (list == null && b == null) {
             return true;

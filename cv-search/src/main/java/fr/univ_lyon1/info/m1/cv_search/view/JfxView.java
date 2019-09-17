@@ -2,6 +2,7 @@ package fr.univ_lyon1.info.m1.cv_search.view;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.WidgetController;
 import fr.univ_lyon1.info.m1.cv_search.model.MoyenneSearch;
+import fr.univ_lyon1.info.m1.cv_search.model.AlsoExpSearch;
 import fr.univ_lyon1.info.m1.cv_search.model.NormalSearch;
 import fr.univ_lyon1.info.m1.cv_search.model.Observable;
 import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
@@ -45,11 +46,13 @@ public class JfxView implements Observer {
         NormalSearch noSearch = new NormalSearch();
         SuperieurSearch suSearch = new SuperieurSearch();
         MoyenneSearch moSearch = new MoyenneSearch();
+        AlsoExpSearch expSearch = new AlsoExpSearch();
         ObservableList<Strategy> options = 
             FXCollections.observableArrayList(
                 noSearch,
                 suSearch,
-                moSearch
+                moSearch,
+                expSearch
             );
         comboBox = new ComboBox(options);
         root.getChildren().add(comboBox);
@@ -135,7 +138,7 @@ public class JfxView implements Observer {
         return searchSkillsBox;
     }
     
-    /**create a button with a skill.*/
+    /**Create a button with a skill.*/
     private void createSkillButton(String text) {
         HBox box = new HBox();
         Label l = new Label(text);
