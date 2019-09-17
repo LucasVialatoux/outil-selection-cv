@@ -3,14 +3,13 @@ package fr.univ_lyon1.info.m1.cv_search.view;
 import fr.univ_lyon1.info.m1.cv_search.controller.WidgetController;
 import fr.univ_lyon1.info.m1.cv_search.model.MoyenneSearch;
 import fr.univ_lyon1.info.m1.cv_search.model.NormalSearch;
+import fr.univ_lyon1.info.m1.cv_search.model.Observable;
 import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
 import fr.univ_lyon1.info.m1.cv_search.model.StrategyConverter;
 import fr.univ_lyon1.info.m1.cv_search.model.SuperieurSearch;
 
 import fr.univ_lyon1.info.m1.cv_search.model.Tuple;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
