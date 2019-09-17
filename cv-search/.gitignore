@@ -2,3 +2,4 @@
 # pas les executables ou les logs.
 log/
 target/
+nbactions.xml
