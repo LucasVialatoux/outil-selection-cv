@@ -18,7 +18,7 @@ public class Tuple implements Comparable {
     @Override
     public int compareTo(Object o) {
         int comparemoyenne = (int)((Tuple)o).moyenne;
-        /* For Ascending order*/
+        // For Ascending order
         return comparemoyenne - (int)this.moyenne;
     }
 }

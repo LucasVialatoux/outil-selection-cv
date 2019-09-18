@@ -6,36 +6,26 @@
 
 package fr.univ_lyon1.info.m1.cv_search.model;
 
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import java.util.ArrayList;
 
 /**
 * Normal search (skill >50).
 */
 public class NormalSearch implements Strategy {
-    public final String name;
     private double total = 0;
     private int compteur = 0;
     private double moyenne = 0;
     private int value;
     private boolean checkSelected = true;
-
-    public NormalSearch() {
-        this.name = "Normal Search";
-    }
     
     @Override
-    public boolean calcul(Applicant a,HBox searchSkillsBox) {
+    public boolean calcul(Applicant a,ArrayList<String> searchSkillList) {
         total = 0;
         compteur = 0;
         moyenne = 0;
         checkSelected = true;
-        for (Node skill : searchSkillsBox.getChildren()) {
-            HBox hb = (HBox)skill;
-            Label l = (Label)hb.getChildren().get(0);
-            String skillName = l.getText();
-            value = a.getSkill(skillName);
+        for (String skill : searchSkillList) {
+            value = a.getSkill(skill);
             total = total + value;
             compteur++;
             moyenne = total / compteur;
@@ -52,7 +42,7 @@ public class NormalSearch implements Strategy {
     }
     
     @Override
-    public String getName() {
-        return name;
+    public String toString() {
+        return "Normal Search";
     }
 }

@@ -6,35 +6,24 @@
 
 package fr.univ_lyon1.info.m1.cv_search.model;
 
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import java.util.ArrayList;
 
 /**
 * Skills search with average >50.
 */
 public class MoyenneSearch implements Strategy {
-    public final String name;
     private double total = 0;
     private int compteur = 0;
     private double moyenne = 0;
-            
-    
-    public MoyenneSearch() {
-        this.name = "Search Average >=50%";
-    }
     
     @Override
-    public boolean calcul(Applicant a,HBox searchSkillsBox) {
+    public boolean calcul(Applicant a,ArrayList<String> searchSkillList) {
         total = 0;
         compteur = 0;
         moyenne = 0;
         
-        for (Node skill : searchSkillsBox.getChildren()) {
-            HBox hb = (HBox)skill;
-            Label l = (Label)hb.getChildren().get(0);
-            String skillName = l.getText();
-            total = total + a.getSkill(skillName);
+        for (String skill : searchSkillList) {
+            total = total + a.getSkill(skill);
             compteur++;
             moyenne = total / compteur;
         }
@@ -47,7 +36,7 @@ public class MoyenneSearch implements Strategy {
     }
     
     @Override
-    public String getName() {
-        return name;
+    public String toString() {
+        return "Search Average >=50%";
     }
 }

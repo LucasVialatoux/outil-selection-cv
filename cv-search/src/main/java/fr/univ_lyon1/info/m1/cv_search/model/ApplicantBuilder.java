@@ -51,7 +51,7 @@ public class ApplicantBuilder {
     
     /** Get all experience skill.*/
     private ArrayList<String> expSkill(Map<String, Object> exp) {
-        ArrayList<String> exS = new ArrayList<String>();
+        ArrayList<String> exS = new ArrayList<>();
         for (String o :exp.keySet()) {
             Map<String, ArrayList> ex = (Map<String, ArrayList>)exp.get(o);
             for (Object s : ex.get("keywords")) {

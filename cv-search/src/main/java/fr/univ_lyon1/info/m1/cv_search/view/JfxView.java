@@ -6,9 +6,7 @@ import fr.univ_lyon1.info.m1.cv_search.model.AlsoExpSearch;
 import fr.univ_lyon1.info.m1.cv_search.model.NormalSearch;
 import fr.univ_lyon1.info.m1.cv_search.model.Observable;
 import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
-import fr.univ_lyon1.info.m1.cv_search.model.StrategyConverter;
 import fr.univ_lyon1.info.m1.cv_search.model.SuperieurSearch;
-
 import fr.univ_lyon1.info.m1.cv_search.model.Tuple;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
@@ -57,7 +55,6 @@ public class JfxView implements Observer {
         comboBox = new ComboBox(options);
         root.getChildren().add(comboBox);
         comboBox.setValue(noSearch);
-        comboBox.setConverter(new StrategyConverter());
         
         Node searchSkillsBox = createCurrentSearchSkillsWidget();
         root.getChildren().add(searchSkillsBox);
@@ -123,7 +120,7 @@ public class JfxView implements Observer {
             @Override
             public void handle(ActionEvent event) {
                 Strategy searchType  = (Strategy)comboBox.getValue();
-                c.search(searchType,searchSkillsBox);
+                c.search(searchType);
             }
             });
         return search;
@@ -153,18 +150,18 @@ public class JfxView implements Observer {
         b.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                c.removeButtonSkill(l);
+                c.removeButtonSkill(l.getText());
             }
         });
     }
     
-    /**remove a skill Button.*/
-    private void removeSkillButton(Label l) {
+    /**Remove a skill Button.*/
+    private void removeSkillButton(String l) {
         for (Node n : searchSkillsBox.getChildren()) {
             if (n instanceof HBox) {
                 HBox hb = (HBox)n;
                 Label lab = (Label) hb.getChildren().get(0);
-                if (lab.getText().equals(l.getText())) {
+                if (lab.getText().equals(l)) {
                     searchSkillsBox.getChildren().remove(n);
                     break;
                 }
@@ -181,10 +178,14 @@ public class JfxView implements Observer {
             for (Tuple tpl : listOfTuple) {
                 resultBox.getChildren().add(new Label(tpl.name));
             }
-        } else if (arg instanceof Label) {
-            removeSkillButton((Label)arg);
         } else {
-            createSkillButton((String)arg);
+            String s = (String)arg;
+            if (s.startsWith("dl button ")) {
+                s = s.substring(10);
+                removeSkillButton(s);
+            } else {
+                createSkillButton((String)arg);
+            }
         }
         
     }

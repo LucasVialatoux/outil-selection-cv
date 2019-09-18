@@ -7,37 +7,26 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
 import java.util.ArrayList;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 
 /**
 * Search with skill >50 and skill in experience.
 */
 public class AlsoExpSearch implements Strategy {
-    public final String name;
     private int value;
     private boolean checkSelected = true;
-    
-    public AlsoExpSearch() {
-        this.name = "Skill > 50 and also experience";
-    }
 
     @Override
-    public boolean calcul(Applicant a, HBox searchSkillsBox) {
+    public boolean calcul(Applicant a, ArrayList<String> searchSkillList) {
         checkSelected = true;
-        for (Node skill : searchSkillsBox.getChildren()) {
-            HBox hb = (HBox)skill;
-            Label l = (Label)hb.getChildren().get(0);
-            String skillName = l.getText();
-            value = a.getSkill(skillName);
+        for (String skill : searchSkillList) {
+            value = a.getSkill(skill);
             if (value < 50) {
                 checkSelected = false;
             }
             if (checkSelected) {
                 ArrayList<String> expList = a.getExpSkill();
                 for (String exp : expList) {
-                    if (skillName == exp) {
+                    if (skill == exp) {
                         checkSelected = true;
                     }
                 }
@@ -53,8 +42,8 @@ public class AlsoExpSearch implements Strategy {
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String toString() {
+        return "Skill > 50 and also experience";
     }
     
 }
