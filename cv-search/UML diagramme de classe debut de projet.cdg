@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="cv-search">
+  <ClassDiagramComponents>
+    <Class name="App" package="fr.univ_lyon1.info.m1.cv_search" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="start" returnType="void" visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Applicant" package="fr.univ_lyon1.info.m1.cv_search.model" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="skills" type="Map&lt;String, Integer&gt;" visibility="package"/>
+        <Field name="name" type="String" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getSkill" returnType="int" visibility="public">
+          <Argument type="String" name="string"/>
+        </Method>
+        <Method name="setSkill" returnType="void" visibility="public">
+          <Argument type="String" name="string"/>
+          <Argument type="int" name="value"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ApplicantBuilder" package="fr.univ_lyon1.info.m1.cv_search.model" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="file" type="File" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="File" name="f"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="filename"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="build" returnType="Applicant" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ApplicantList" package="fr.univ_lyon1.info.m1.cv_search.model" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="list" type="List&lt;Applicant&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="add" returnType="void" visibility="package">
+          <Argument type="Applicant" name="a"/>
+        </Method>
+        <Method name="size" returnType="Object" visibility="public"/>
+        <Method name="iterator" returnType="Iterator&lt;Applicant&gt;" visibility="public"/>
+        <Method name="clear" returnType="void" visibility="public"/>
+        <Method name="setList" returnType="void" visibility="public">
+          <Argument type="ApplicantList" name="list"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ApplicantListBuilder" package="fr.univ_lyon1.info.m1.cv_search.model" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="directory" type="File" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="File" name="directory"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="build" returnType="ApplicantList" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="JfxView" package="fr.univ_lyon1.info.m1.cv_search.view" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="searchSkillsBox" type="HBox" visibility="private"/>
+        <Field name="resultBox" type="VBox" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stage" name="stage"/>
+          <Argument type="int" name="width"/>
+          <Argument type="int" name="height"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="createNewSkillWidget" returnType="Node" visibility="private"/>
+        <Method name="createResultsWidget" returnType="Node" visibility="private"/>
+        <Method name="createSearchWidget" returnType="Node" visibility="private"/>
+        <Method name="createCurrentSearchSkillsWidget" returnType="Node" visibility="private"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="list" source="fr.univ_lyon1.info.m1.cv_search.model.ApplicantList" target="fr.univ_lyon1.info.m1.cv_search.model.Applicant" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Applicant&gt;"/>
+    <UseRelation source="fr.univ_lyon1.info.m1.cv_search.model.ApplicantListBuilder" target="fr.univ_lyon1.info.m1.cv_search.model.ApplicantList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="fr.univ_lyon1.info.m1.cv_search.model.ApplicantList" target="fr.univ_lyon1.info.m1.cv_search.model.Applicant" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="fr.univ_lyon1.info.m1.cv_search.model.ApplicantList" target="fr.univ_lyon1.info.m1.cv_search.model.ApplicantList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="fr.univ_lyon1.info.m1.cv_search.model.ApplicantBuilder" target="fr.univ_lyon1.info.m1.cv_search.model.Applicant" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
