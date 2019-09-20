@@ -10,10 +10,14 @@ import java.util.ArrayList;
 
 public class SkillList extends Observable {
     private ArrayList<String> skillList = new ArrayList<String>();
-    /** Notify view to add skill button. */
     
+    /** 
+     * Notify view to add skill button.
+     * @param text represents skill
+     */
     public void ajoutSkill(String text) {
-        if (!skillList.contains(text)) {
+        text = text.trim();
+        if (!skillList.contains(text) && !text.equals("")) {
             skillList.add(text);
             notifyObservers(text);
         }

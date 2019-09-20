@@ -35,7 +35,6 @@ public class TupleList extends Observable {
         //Sort of applicants
         Collections.sort(listT);
         if (!this.equals(listT)) {
-            System.out.println("First if");
             list = listT;
             notifyObservers(list);
         }

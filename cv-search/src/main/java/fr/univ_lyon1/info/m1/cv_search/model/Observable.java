@@ -15,8 +15,10 @@ public abstract class Observable {
     
     /** Change all Observer.*/
     public void notifyObservers(Object arg) {
-        for (Observer ob : obs) {
-            ob.update(this, arg);
+        if (!obs.isEmpty()) {
+            for (Observer ob : obs) {
+                ob.update(this, arg);
+            }
         }
     }
     
