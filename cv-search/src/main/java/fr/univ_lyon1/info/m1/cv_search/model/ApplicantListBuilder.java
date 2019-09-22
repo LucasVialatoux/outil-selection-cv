@@ -12,6 +12,7 @@ public class ApplicantListBuilder {
 
     /**
      * Build the list of applicants.
+     * @return list of applicants
      */
     public ApplicantList build() {
         ApplicantList applicants = new ApplicantList();

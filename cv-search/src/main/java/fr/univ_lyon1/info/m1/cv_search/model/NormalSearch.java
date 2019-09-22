@@ -9,7 +9,7 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 import java.util.ArrayList;
 
 /**
-* Normal search (skill >50).
+* Normal search skill upper to 50.
 */
 public class NormalSearch implements Strategy {
     private double total = 0;

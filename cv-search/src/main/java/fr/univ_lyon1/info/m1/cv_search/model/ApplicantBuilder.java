@@ -22,6 +22,7 @@ public class ApplicantBuilder {
 
     /**
      * Build the applicant from the Yaml file provided to the constructor.
+     * @return create an applicant
      */
     public Applicant build() {
         Applicant a = new Applicant();

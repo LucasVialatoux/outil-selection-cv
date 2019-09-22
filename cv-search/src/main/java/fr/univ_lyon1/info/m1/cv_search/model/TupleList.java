@@ -21,7 +21,10 @@ public class TupleList extends Observable {
         return list.size();
     }
     
-    /** update the result after search. */
+    /** update the result after search.
+     * @param searchType strategy to apply
+     * @param skillList list of selected skills
+     */
     public void searchWidget(Strategy searchType,ArrayList<String> skillList) {
         ApplicantList listA = new ApplicantListBuilder(new File(".")).build();
         ArrayList<Tuple> listT = new ArrayList<Tuple>();

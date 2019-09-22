@@ -25,7 +25,8 @@ public class ApplicantList implements Iterable<Applicant> {
         list.clear();
     }
 
-    /** Sets the content of the applicant list. */
+    /** Sets the content of the applicant list.
+     * @param list list of applicant */
     public void setList(ApplicantList list) {
         this.list = list.list;
     }

@@ -9,7 +9,7 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 import java.util.ArrayList;
 
 /**
-* Skills search with average >50.
+* Skills search with average upper to 50.
 */
 public class MoyenneSearch implements Strategy {
     private double total = 0;

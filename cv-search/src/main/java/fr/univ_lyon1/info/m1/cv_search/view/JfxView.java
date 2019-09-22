@@ -32,6 +32,10 @@ public class JfxView implements Observer {
 
     /**
      * Create the main view of the application.
+     * @param c the controler
+     * @param stage javaFx stage
+     * @param width windows'width
+     * @param height windows'height
      */
     public JfxView(WidgetController c,Stage stage, int width, int height) {
         // Name of window

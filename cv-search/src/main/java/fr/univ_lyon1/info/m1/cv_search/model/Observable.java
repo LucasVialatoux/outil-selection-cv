@@ -13,7 +13,9 @@ public abstract class Observable {
     
     private ArrayList<Observer> obs = new ArrayList();
     
-    /** Change all Observer.*/
+    /** Change all Observer.
+     * @param arg Object to notify
+     */
     public void notifyObservers(Object arg) {
         if (!obs.isEmpty()) {
             for (Observer ob : obs) {

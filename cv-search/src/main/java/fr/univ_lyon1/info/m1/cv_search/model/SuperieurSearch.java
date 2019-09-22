@@ -9,7 +9,7 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 import java.util.ArrayList;
 
 /**
-* Superior search (skill >=60).
+* Superior search skill upper to 60.
 */
 public class SuperieurSearch implements Strategy {
     private double total = 0;

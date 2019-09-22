@@ -14,6 +14,8 @@ public class App extends Application {
 
     /**
      * With javafx, start() is called when the application is launched.
+     * @param stage stage javaFx
+     * @throws java.lang.Exception trows execption
      */
     @Override
     public void start(Stage stage) throws Exception {
@@ -32,6 +34,7 @@ public class App extends Application {
     /**
      * A main method in case the user launches the application using
      * App as the main class.
+     * @param args classic args
      */
     public static void main(String[] args) {
         Application.launch(args);
