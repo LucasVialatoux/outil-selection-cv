@@ -9,6 +9,9 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 import fr.univ_lyon1.info.m1.cv_search.view.Observer;
 import java.util.ArrayList;
 
+/**
+* Abstract class Observable.
+*/
 public abstract class Observable {
     
     private ArrayList<Observer> obs = new ArrayList();

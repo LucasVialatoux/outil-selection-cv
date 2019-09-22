@@ -34,6 +34,7 @@ public class App extends Application {
     /**
      * A main method in case the user launches the application using
      * App as the main class.
+     * @param args represents arguments.
      */
     public static void main(String[] args) {
         Application.launch(args);

@@ -24,6 +24,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+* Main class view, implementing Observer.
+*/
 public class JfxView implements Observer {
     private HBox searchSkillsBox;
     private VBox resultBox;

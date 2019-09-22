@@ -18,6 +18,9 @@ import fr.univ_lyon1.info.m1.cv_search.model.TupleList;
 import java.util.ArrayList;
 import org.junit.Before;
 
+/**
+* Test class of the application.
+*/
 public class ApplicantTest {
     private TupleList tupleList1;
     private SkillList skillList1;
@@ -27,6 +30,9 @@ public class ApplicantTest {
     private Applicant a1;
     private Applicant a2;
     
+    /**
+     * Set up Tuple function.
+     */
     @Before
     public void setUpTupleList(){
         tupleList1 = new TupleList();
@@ -36,6 +42,9 @@ public class ApplicantTest {
         tupleList1.add(tple1);
     }
     
+    /**
+     * Set up applicants function.
+     */
     @Before
     public void setUpApplicants(){
         builderA1 = new ApplicantBuilder("applicant1.yaml");
@@ -44,6 +53,9 @@ public class ApplicantTest {
         a2 = builderA2.build();
     }
     
+    /**
+     * Function to test main controller.
+     */
     @Test
     public void testController(){
         //Given
@@ -68,6 +80,9 @@ public class ApplicantTest {
         assertEquals(true,doContain_1);
     }
     
+    /**
+     * Test SkillList class function.
+     */
     @Test
     public void testSkillList(){
         //Given
@@ -92,6 +107,9 @@ public class ApplicantTest {
         assertEquals(false,isFalse_1);
     }
     
+    /**
+     * Test TupleList class function.
+     */
     @Test
     public void testTupleList(){
         //Given
@@ -106,6 +124,9 @@ public class ApplicantTest {
         assertEquals(false,boolDontContain);
     }
     
+    /**
+     * Test Tuple model.
+     */
     @Test
     public void testTuple(){
         //Given
@@ -119,6 +140,9 @@ public class ApplicantTest {
         assertEquals(positiv,30);
     }
     
+    /**
+     * Test all Strategies.
+     */
     @Test
     public void testStrategies(){
         // Given
@@ -153,6 +177,9 @@ public class ApplicantTest {
         assertEquals(false,expSelected_a2);
     }
 
+    /**
+     * Test reading Applicants possibility.
+     */
     @Test
     public void testReadApplicant() {
         // Given
@@ -164,6 +191,9 @@ public class ApplicantTest {
         assertEquals("John Smith", a1.getName());
     }
 
+    /**
+     * Test many reading applicants possibility.
+     */
     @Test
     public void testReadManyApplicant() {
         // Given

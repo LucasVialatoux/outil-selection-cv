@@ -9,7 +9,7 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 import java.util.ArrayList;
 
 /**
-* Search with skill >50 and skill in experience.
+ * Search strategy with skill >50 and skill in experience.
 */
 public class AlsoExpSearch implements Strategy {
     private int value;

@@ -6,6 +6,10 @@
 
 package fr.univ_lyon1.info.m1.cv_search.model;
 
+/**
+* Tuple model for MoyenneSearch implementing Comparable.
+* Every tuple has a name and the average.
+*/
 public class Tuple implements Comparable {    
     public String name;
     public double moyenne;
