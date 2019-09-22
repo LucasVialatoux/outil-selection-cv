@@ -5,9 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Map;
-
 import org.yaml.snakeyaml.Yaml;
 
+/**
+* Applicant builder using yaml files.
+*/
 public class ApplicantBuilder {
 
     File file;

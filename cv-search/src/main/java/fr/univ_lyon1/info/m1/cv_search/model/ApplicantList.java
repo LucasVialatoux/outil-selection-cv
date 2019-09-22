@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+* ApplicantList implementing Iterable.
+* Will create an ArrayList of applicants.
+*/
 public class ApplicantList implements Iterable<Applicant> {
     private List<Applicant> list = new ArrayList<Applicant>();
 

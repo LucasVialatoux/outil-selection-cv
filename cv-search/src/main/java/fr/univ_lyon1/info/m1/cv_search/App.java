@@ -14,8 +14,8 @@ public class App extends Application {
 
     /**
      * With javafx, start() is called when the application is launched.
-     * @param stage stage javaFx
-     * @throws java.lang.Exception trows execption
+     * @param stage represents the stage
+     * @throws java.lang.Exception when incorrect stage
      */
     @Override
     public void start(Stage stage) throws Exception {

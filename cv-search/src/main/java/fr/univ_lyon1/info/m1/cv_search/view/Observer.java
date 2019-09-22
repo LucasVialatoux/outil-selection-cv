@@ -8,6 +8,9 @@ package fr.univ_lyon1.info.m1.cv_search.view;
 
 import fr.univ_lyon1.info.m1.cv_search.model.Observable;
 
+/**
+* Observer interface.
+*/
 public interface Observer {
     public void update(Observable o, Object arg);
 }

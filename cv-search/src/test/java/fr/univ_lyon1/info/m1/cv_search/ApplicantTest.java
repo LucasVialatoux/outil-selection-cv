@@ -15,27 +15,50 @@ import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import fr.univ_lyon1.info.m1.cv_search.model.SuperieurSearch;
 import fr.univ_lyon1.info.m1.cv_search.model.Tuple;
 import fr.univ_lyon1.info.m1.cv_search.model.TupleList;
-import fr.univ_lyon1.info.m1.cv_search.model.Observable;
 import java.util.ArrayList;
 import org.junit.Before;
 
+/**
+* Test class of the application.
+*/
 public class ApplicantTest {
     private TupleList tupleList1;
     private SkillList skillList1;
     private Tuple tple1,tple2;
+    private ApplicantBuilder builderA1;
+    private ApplicantBuilder builderA2;
+    private Applicant a1;
+    private Applicant a2;
     
+    /**
+     * Set up Tuple function.
+     */
     @Before
     public void setUpTupleList(){
         tupleList1 = new TupleList();
+        skillList1 = new SkillList();
         tple1 = new Tuple("nomUn",50);
         tple2 = new Tuple("nomDeux",20);
         tupleList1.add(tple1);
     }
     
+    /**
+     * Set up applicants function.
+     */
+    @Before
+    public void setUpApplicants(){
+        builderA1 = new ApplicantBuilder("applicant1.yaml");
+        builderA2 = new ApplicantBuilder("applicant2.yaml");
+        a1 = builderA1.build();
+        a2 = builderA2.build();
+    }
+    
+    /**
+     * Function to test main controller.
+     */
     @Test
     public void testController(){
         //Given
-        skillList1 = new SkillList();
         ArrayList<String> returnList;
         WidgetController c = new WidgetController(tupleList1,skillList1);
         c.addButtonSkill("unSkill");
@@ -57,10 +80,12 @@ public class ApplicantTest {
         assertEquals(true,doContain_1);
     }
     
+    /**
+     * Test SkillList class function.
+     */
     @Test
     public void testSkillList(){
         //Given
-        skillList1 = new SkillList();
         ArrayList<String> returnList;
         skillList1.ajoutSkill("unSkill");
         skillList1.ajoutSkill("unSkill");
@@ -82,6 +107,9 @@ public class ApplicantTest {
         assertEquals(false,isFalse_1);
     }
     
+    /**
+     * Test TupleList class function.
+     */
     @Test
     public void testTupleList(){
         //Given
@@ -96,6 +124,9 @@ public class ApplicantTest {
         assertEquals(false,boolDontContain);
     }
     
+    /**
+     * Test Tuple model.
+     */
     @Test
     public void testTuple(){
         //Given
@@ -109,6 +140,9 @@ public class ApplicantTest {
         assertEquals(positiv,30);
     }
     
+    /**
+     * Test all Strategies.
+     */
     @Test
     public void testStrategies(){
         // Given
@@ -116,11 +150,7 @@ public class ApplicantTest {
         SuperieurSearch supSearch = new SuperieurSearch();
         MoyenneSearch moySearch = new MoyenneSearch();
         AlsoExpSearch expSearch = new AlsoExpSearch();
-        ApplicantBuilder builderA1 = new ApplicantBuilder("applicant1.yaml");
-        ApplicantBuilder builderA2 = new ApplicantBuilder("applicant2.yaml");
-        Applicant a1 = builderA1.build();
-        Applicant a2 = builderA2.build();
-        ArrayList<String> searchSkillList = new ArrayList<String>();
+        ArrayList<String> searchSkillList = new ArrayList<>();
         searchSkillList.add("c");
         searchSkillList.add("c++");
         
@@ -147,19 +177,23 @@ public class ApplicantTest {
         assertEquals(false,expSelected_a2);
     }
 
+    /**
+     * Test reading Applicants possibility.
+     */
     @Test
     public void testReadApplicant() {
         // Given
-        ApplicantBuilder builder = new ApplicantBuilder("applicant1.yaml");
 
         // When
-        Applicant a = builder.build();
 
         // Then
-        assertEquals(70, a.getSkill("c++"));
-        assertEquals("John Smith", a.getName());
+        assertEquals(70, a1.getSkill("c++"));
+        assertEquals("John Smith", a1.getName());
     }
 
+    /**
+     * Test many reading applicants possibility.
+     */
     @Test
     public void testReadManyApplicant() {
         // Given

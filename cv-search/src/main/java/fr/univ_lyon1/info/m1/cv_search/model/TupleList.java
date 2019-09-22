@@ -10,6 +10,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+* TupleList class extending Observable, will create an ArrayList of Tuple.
+*/
 public class TupleList extends Observable {
     public ArrayList<Tuple> list = new ArrayList<Tuple>();
 

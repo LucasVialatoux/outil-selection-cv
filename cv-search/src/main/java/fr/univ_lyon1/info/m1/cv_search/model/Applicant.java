@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+* Applicant model using an HashMap and an ArrayList.
+*/
 public class Applicant {
     Map<String, Integer> skills = new HashMap<String, Integer>();
     private ArrayList<String> expSkill = new ArrayList<String>();

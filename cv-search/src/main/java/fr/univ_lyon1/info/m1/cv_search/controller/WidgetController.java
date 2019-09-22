@@ -10,12 +10,19 @@ import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
 import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
 import fr.univ_lyon1.info.m1.cv_search.model.TupleList;
 
-
+/**
+* Main controller of the application.
+*/
 public class WidgetController {
     
     public TupleList list;
     public SkillList s;
     
+    /**
+     * WidgetController constructor.
+     * @param list represents the list of applicants.
+     * @param s represents list of skills entered by the user.
+     */
     public WidgetController(TupleList list,SkillList s) {
         this.list = list;
         this.s = s;

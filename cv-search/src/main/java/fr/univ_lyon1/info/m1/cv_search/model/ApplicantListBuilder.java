@@ -2,6 +2,9 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 
 import java.io.File;
 
+/**
+* ApplicantList builder using yaml files.
+*/
 public class ApplicantListBuilder {
 
     File directory;

@@ -8,6 +8,9 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 
 import java.util.ArrayList;
 
+/**
+* SkillList creating an ArrayList of skills, extending Observable class.
+*/
 public class SkillList extends Observable {
     private ArrayList<String> skillList = new ArrayList<String>();
     
